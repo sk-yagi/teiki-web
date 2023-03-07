@@ -1,30 +1,22 @@
 import cx from "classnames";
 import * as React from "react";
 
-import MilestoneDetail from "../../../PageEditProject/containers/ProjectRoadmapEditor/components/MilestoneDetail";
 import FAQs from "../../../PageProjectDetails/containers/ProjectDetails/containers/FAQs";
 
 import TabControl from "./components/TabControl";
 import styles from "./index.module.scss";
 
-import {
-  ProjectCommunity,
-  ProjectDescription,
-  ProjectMilestone,
-  ProjectRoadmap,
-} from "@/modules/business-types";
+import { ProjectCommunity, ProjectDescription } from "@/modules/business-types";
 import RichTextEditor from "@/modules/teiki-components/components/RichTextEditor";
 
 type Props = {
   className?: string;
-  roadmap: ProjectRoadmap;
   community: ProjectCommunity;
   description: ProjectDescription;
 };
 
 export default function ProjectDetails({
   className,
-  roadmap,
   community,
   description,
 }: Props) {
@@ -34,7 +26,6 @@ export default function ProjectDetails({
       <TabControl
         tabs={[
           { title: "Campaign" },
-          { title: "Roadmap" },
           // TODO: @sk-kitsune: enable when announcements are ready.
           // TODO: @sk-tenba: create demo announcements for the projects
           { title: "Announcements", disabled: true },
@@ -52,13 +43,7 @@ export default function ProjectDetails({
             className={styles.richTextEditor}
           />
         </div>
-      ) : activeTabIndex == 1 ? ( // Roadmaps
-        <div className={styles.roadmapMain}>
-          {roadmap.map((milestone: ProjectMilestone, index: number) => (
-            <MilestoneDetail {...milestone} key={index} />
-          ))}
-        </div>
-      ) : activeTabIndex == 3 ? ( // FAQs
+      ) : activeTabIndex == 2 ? ( // FAQs
         <FAQs faqs={community.frequentlyAskedQuestions} />
       ) : null}
     </div>

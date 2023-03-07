@@ -349,7 +349,6 @@ export default function PageProjectDetails({
               {!project ||
               !project.basics ||
               !project.description ||
-              !project.roadmap ||
               !project.community ||
               !project.history ||
               !project.categories ||
@@ -406,7 +405,6 @@ export default function PageProjectDetails({
                         className={styles.details}
                         projectId={project.id}
                         description={project.description}
-                        roadmap={project.roadmap}
                         community={project.community}
                         announcements={project.announcements}
                         activities={project.activities}
