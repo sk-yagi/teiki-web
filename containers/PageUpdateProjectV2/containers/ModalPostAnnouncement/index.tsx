@@ -118,6 +118,8 @@ export default function ModalPostAnnouncement({
         async () => {
           const blobWBA: WithBufsAs<ProjectAnnouncement, Blob> =
             await Converters.fromProjectAnnouncement(CodecBlob)(value);
+
+          // const cid = await ipfsAdd$WithBufsAs$CipherMetaCid(blobWBA);
           const cid = await ipfsAdd$WithBufsAs$Blob(blobWBA);
           return cid;
         },
