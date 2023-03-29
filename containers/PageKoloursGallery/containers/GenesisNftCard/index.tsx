@@ -1,4 +1,5 @@
 import cx from "classnames";
+import { useRouter } from "next/router";
 import * as React from "react";
 
 import WithAspectRatio from "../../../../components/WithAspectRatio";
@@ -20,6 +21,7 @@ type Props = {
 };
 
 export default function GenesisNftCard({ className, style, value }: Props) {
+  const router = useRouter();
   if (!value) {
     return (
       <div className={cx(styles.container, className)} style={style}>
@@ -29,7 +31,15 @@ export default function GenesisNftCard({ className, style, value }: Props) {
   }
 
   return (
-    <div className={cx(styles.container, className)} style={style}>
+    <div
+      className={cx(styles.container, className)}
+      style={style}
+      onClick={
+        // TODO: More user-friendly URI maybe?
+        // Not 100% sure about this path...
+        () => router.push(`/kolours/gallery/${encodeURIComponent(value.id)}`)
+      }
+    >
       <WithAspectRatio aspectRatio={2 / 1}>
         <ImageView
           className={styles.image}
